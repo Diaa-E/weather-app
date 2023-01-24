@@ -1,5 +1,14 @@
 "use strict";
 
+getWeather()
+
+async function getWeather()
+{
+    const cityCoord = await getCoord("london", "GBR");
+    const weather = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
+    console.log(weather);
+}
+
 async function getCoord(cityName, countryCode)
 {
     try
@@ -12,7 +21,28 @@ async function getCoord(cityName, countryCode)
             }
         );
 
-        return await response.json();
+        const data = response.json()
+        return data;
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+}
+
+async function getCityData(lat, long)
+{
+    try
+    {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${getApiKey()}`,
+            {
+                mode: "cors"
+            }
+        );
+
+        const data = response.json();
+        return data
     }
     catch(err)
     {
