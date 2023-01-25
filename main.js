@@ -71,11 +71,18 @@ function getPixaBayKey()
 
 async function getImage(query)
 {
-    const pixaImg = await fetch(
+    try
+    {
+        const pixaImg = await fetch(
         `https://pixabay.com/api/?image_type=photo&orientation=horizontal&key=${getPixaBayKey()}&q=${query}`,
         {
             mode: "cors"
         }
-    )
+        )
     return pixaImg.json()
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
 }
