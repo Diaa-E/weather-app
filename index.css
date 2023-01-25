@@ -1,10 +1,64 @@
 body{
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    place-items: center;
+    place-content: center;
+}
+
+:root{
+    --background-wrapper:rgba(0, 0, 0, 0.5);
+    --shadow:0px 0px 20px 1px rgba(0, 0, 0, 0.25);
+    --background-accent: rgb(82, 189, 255);
+    --font: white;
 }
 
 body, :root{
     margin: 0;
     height: 100%;
     width: 100%;
+}
+
+.wrapper{
+    min-height: 500px;
+    min-width: 700px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px) saturate(50%);
+    background-color: var(--background-wrapper);
+    display: grid;
+    grid-auto-rows: min-content;
+    box-shadow: var(--shadow);
+    place-items: stretch;
+    place-content: stretch;
+    padding: 30px;
+    gap: 20px;
+}
+
+h1{
+    color: var(--font);
+    text-align: center;
+}
+
+form{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+input, button{
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+button{
+    background-color: var(--background-accent);
+    color: var(--font);
+    cursor: pointer;
+}
+
+button:hover{
+    filter: brightness(115%);
 }
