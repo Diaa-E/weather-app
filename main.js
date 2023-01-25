@@ -1,10 +1,10 @@
 "use strict";
 
-getWeather("Prague", "CZE");
+getWeather("Paris");
 
-async function getWeather(city, countryCode)
+async function getWeather(city)
 {
-    const cityCoord = await getCoord(city, countryCode);
+    const cityCoord = await getCoord(city);
     const weather = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
     const img = await getImage(city);
     console.log(weather)
@@ -17,13 +17,13 @@ function getRandom(upperBound)
     return Math.round(Math.random() * upperBound);
 }
 
-async function getCoord(cityName, countryCode)
+async function getCoord(cityName)
 {
     try
     {
         const response = await fetch(
             `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}
-            ,${countryCode}&appid=${getOpenWeatherKey()}`,
+            &appid=${getOpenWeatherKey()}`,
             {
                 mode: "cors"
             }
