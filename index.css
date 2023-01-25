@@ -55,8 +55,21 @@ body, :root{
 h1{
     font-family: var(--font-cursive), sans-serif ;
     font-size: 56px;
-    color: var(--font);
+    color: var(--background-accent);
     text-align: center;
+}
+
+h2{
+    font-size: 32px;
+}
+
+h3{
+    font-size: 14px;
+}
+
+h2, h3{
+    text-align: center;
+    color: var(--font);
 }
 
 form{

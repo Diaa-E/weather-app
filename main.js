@@ -11,9 +11,11 @@ form.addEventListener("submit", e => {
 async function getWeather(city)
 {
     const cityCoord = await getCoord(city);
-    const weather = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
+    const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
     const img = await getImage(city);
-    console.log(weather)
+    console.log(cityData)
+    updateCity(cityData.name, cityData.sys.country);
+    updateDate(cityData.dt)
     const body = document.querySelector("body");
     body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`
 }
@@ -25,6 +27,19 @@ function getCity()
     txtCity.value = "";
 
     return city ;
+}
+
+function updateCity(cityName, Country)
+{
+    const h2 = document.querySelector("h2");
+
+    h2.textContent = `${cityName}, ${Country}`;
+}
+
+function updateDate(dateUnix)
+{
+    const h3 = document.querySelector("h3");
+    h3.textContent = new Date(dateUnix * 1000); //to convert from Unix time, it calculates in seconds while JS in milliseconds
 }
 
 function getRandom(upperBound)
