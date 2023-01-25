@@ -19,6 +19,8 @@ body{
 *{
     font-family: var(--font-regular), sans-serif;
     box-sizing: border-box;
+    appearance: none;
+    border: none;
 }
 
 :root{
