@@ -12,7 +12,7 @@ async function getWeather(city)
 {
     const cityCoord = await getCoord(city);
     const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
-    const img = await getImage(city);
+    const img = await getImage(cityCoord[0].name);
     updateCity(cityCoord[0].name, cityCoord[0].country); //more accurate city name
     updateDate(cityData.dt)
     const body = document.querySelector("body");
