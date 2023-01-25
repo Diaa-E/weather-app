@@ -1,16 +1,15 @@
 "use strict";
 
-getWeather()
+getWeather("Los Angeles", "USA");
 
-async function getWeather()
+async function getWeather(city, countryCode)
 {
-    const cityCoord = await getCoord("new york", "USA");
+    const cityCoord = await getCoord(city, countryCode);
     const weather = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
-    const imgUrl = await getImage("New york");
-    const img = new Image();
-    img.src = imgUrl.hits[0].largeImageURL;
+    const img = await getImage(city);
+    console.log(weather)
     const body = document.querySelector("body");
-    body.append(img)
+    body.style.backgroundImage = `url(${img.hits[1].largeImageURL})`
 }
 
 async function getCoord(cityName, countryCode)
