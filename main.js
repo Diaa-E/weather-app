@@ -1,6 +1,6 @@
 "use strict";
 
-getWeather("Los Angeles", "USA");
+getWeather("Prague", "CZE");
 
 async function getWeather(city, countryCode)
 {
@@ -9,7 +9,12 @@ async function getWeather(city, countryCode)
     const img = await getImage(city);
     console.log(weather)
     const body = document.querySelector("body");
-    body.style.backgroundImage = `url(${img.hits[1].largeImageURL})`
+    body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`
+}
+
+function getRandom(upperBound)
+{
+    return Math.round(Math.random() * upperBound);
 }
 
 async function getCoord(cityName, countryCode)
@@ -67,7 +72,7 @@ function getPixaBayKey()
 async function getImage(query)
 {
     const pixaImg = await fetch(
-        `https://pixabay.com/api/?key=${getPixaBayKey()}&q=${query}`,
+        `https://pixabay.com/api/?image_type=photo&orientation=horizontal&key=${getPixaBayKey()}&q=${query}`,
         {
             mode: "cors"
         }
