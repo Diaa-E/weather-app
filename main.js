@@ -1,6 +1,12 @@
 "use strict";
 
-getWeather("Paris");
+const form = document.querySelector("form#weatherForm");
+
+form.addEventListener("submit", e => {
+
+    e.preventDefault();
+    getWeather(getCity());
+});
 
 async function getWeather(city)
 {
@@ -10,6 +16,15 @@ async function getWeather(city)
     console.log(weather)
     const body = document.querySelector("body");
     body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`
+}
+
+function getCity()
+{
+    const txtCity = document.querySelector("input#city");
+    const city = txtCity.value;
+    txtCity.value = "";
+
+    return city ;
 }
 
 function getRandom(upperBound)
