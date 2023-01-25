@@ -2,3 +2,9 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+body, :root{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
