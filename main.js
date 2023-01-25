@@ -73,7 +73,7 @@ async function getCityData(lat, long)
     try
     {
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${getOpenWeatherKey()}`,
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${getMode()}&appid=${getOpenWeatherKey()}`,
             {
                 mode: "cors"
             }
@@ -115,4 +115,9 @@ async function getImage(query)
     {
         console.log(err)
     }
+}
+
+function getMode()
+{
+    return document.querySelector("select#mode").value;
 }
