@@ -14,9 +14,9 @@ async function getWeather(city)
     const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
     const img = await getImage(cityCoord[0].name);
     updateCity(cityCoord[0].name, cityCoord[0].country); //more accurate city name
-    updateDate(cityData.dt)
+    updateDate(cityData.dt);
     const body = document.querySelector("body");
-    body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`
+    body.style.backgroundImage = `url(${img.hits[getRandom(+img.totalHits)].largeImageURL})`;
 }
 
 function getCity()
@@ -58,7 +58,7 @@ async function getCoord(cityName)
             }
         );
 
-        const data = response.json()
+        const data = response.json();
         return data;
     }
     catch(err)
@@ -108,11 +108,11 @@ async function getImage(query)
             mode: "cors"
         }
         )
-    return pixaImg.json()
+    return pixaImg.json();
     }
     catch(err)
     {
-        console.log(err)
+        console.log(err);
     }
 }
 
