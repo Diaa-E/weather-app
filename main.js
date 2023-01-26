@@ -16,7 +16,7 @@ async function getWeather(city)
     updateCity(cityCoord[0].name, cityCoord[0].country); //more accurate city name
     updateDate(cityData.dt);
     const body = document.querySelector("body");
-    body.style.backgroundImage = `url(${img.hits[getRandom(+img.totalHits)].largeImageURL})`;
+    body.style.backgroundImage = `url(${img.hits[getRandom(+img.hits.length)].largeImageURL})`;
 }
 
 function getCity()
