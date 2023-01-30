@@ -56,7 +56,7 @@ function updateDate(dateUnix)
 
 function getRandom(upperBound)
 {
-    return Math.round(Math.random() * upperBound);
+    return Math.floor(Math.random() * upperBound);
 }
 
 async function getCoord(cityName)
