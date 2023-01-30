@@ -1,6 +1,11 @@
 "use strict";
 
 const form = document.querySelector("form#weatherForm");
+const cities = [
+    "london", "prague", "berlin", "washington", "cairo", "moscow", "hong kong", "paris"
+]
+
+getWeather(cities[getRandom(cities.length)]); //initialize app with a random city
 
 form.addEventListener("submit", e => {
 
