@@ -64,12 +64,15 @@ async function getCoord(cityName)
             }
         );
 
-        const data = response.json();
+        const data = await response.json();
+        
+        if (data.length === 0) throw new Error("City Not Found");
+
         return data;
     }
     catch(err)
     {
-        console.log(err);
+        errorPanel().showError(err);
     }
 }
 
@@ -89,7 +92,7 @@ async function getCityData(lat, long)
     }
     catch(err)
     {
-        console.log(err);
+        errorPanel().showError(err);
     }
 }
 
@@ -118,11 +121,28 @@ async function getImage(query)
     }
     catch(err)
     {
-        console.log(err);
+        errorPanel().showError(err);
     }
 }
 
 function getMode()
 {
     return document.querySelector("select#mode").value;
+}
+
+function errorPanel()
+{
+    const panel = document.querySelector(".error-panel")
+
+    function showError(newError)
+    {
+        panel.textContent = newError;
+    }
+
+    function clearError()
+    {
+        panel.textContent = "";
+    }
+
+    return {showError, clearError}
 }
