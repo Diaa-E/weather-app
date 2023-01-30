@@ -11,6 +11,7 @@ form.addEventListener("submit", e => {
 async function getWeather(city)
 {
     try {
+        errorPanel().clearError();
         const cityCoord = await getCoord(city);
         const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
         let img = await getImage(cityCoord[0].name); //Returns an empty hits array if query has no results
