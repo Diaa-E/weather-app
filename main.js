@@ -102,6 +102,7 @@ async function getCityData(lat, long)
         );
 
         const data = response.json();
+        hideLoading();
         return data
     }
     catch(err)
@@ -186,5 +187,17 @@ function showLoading()
 
     elements.forEach(element => {
         element.textContent = "Loading...";
+        element.classList.add("loading");
+    });
+}
+
+function hideLoading()
+{
+    const elements = Array.from( document.querySelectorAll(".weather-info"));
+    elements.push(document.querySelector("h2"));
+    elements.push(document.querySelector("h3"));
+
+    elements.forEach(element => {
+        element.classList.remove("loading");
     });
 }
