@@ -126,3 +126,7 @@ button:hover{
     align-self: center;
     font-size: 24px;
 }
+
+.loading{
+    color: var(--background-accent);
+}

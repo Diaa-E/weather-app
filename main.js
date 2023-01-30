@@ -16,10 +16,10 @@ form.addEventListener("submit", e => {
 async function getWeather(city)
 {
     try {
+        showLoading();
         errorPanel().clearError();
         const cityCoord = await getCoord(city);
         const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
-        console.log(cityData)
         let img = await getImage(cityCoord[0].name); //Returns an empty hits array if query has no results
         //look for a weather related image in case no results come back from prompt
         if (img.hits.length === 0)
@@ -176,4 +176,15 @@ function updateWeather(data)
     pInfoFields[1].textContent = `${data.main.temp} ${units.temp}`;
     pInfoFields[2].textContent = `${data.wind.speed} ${units.wind}`;
     pInfoFields[3].textContent = `${data.main.humidity} ${units.humidity}`;
+}
+
+function showLoading()
+{
+    const elements = Array.from( document.querySelectorAll(".weather-info"));
+    elements.push(document.querySelector("h2"));
+    elements.push(document.querySelector("h3"));
+
+    elements.forEach(element => {
+        element.textContent = "Loading...";
+    });
 }
