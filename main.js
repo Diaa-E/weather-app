@@ -71,7 +71,7 @@ async function getCoord(cityName)
     try
     {
         const response = await fetch(
-            `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}
+            `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}
             &appid=${getOpenWeatherKey()}`,
             {
                 mode: "cors"
