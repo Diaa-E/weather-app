@@ -13,7 +13,7 @@ async function getWeather(city)
     const cityCoord = await getCoord(city);
     const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
     let img = await getImage(cityCoord[0].name); //Returns an empty hits array if query has no results
-    //look for aweather related image in case no results come back from prompt
+    //look for a weather related image in case no results come back from prompt
     if (img.hits.length === 0)
     {
         img = await getImage("Weather");
@@ -22,7 +22,7 @@ async function getWeather(city)
     updateCity(cityCoord[0].name, cityCoord[0].country); //more accurate city name
     updateDate(cityData.dt);
     const body = document.querySelector("body");
-    body.style.backgroundImage = `url(${img.hits[getRandom(+img.hits.length)].largeImageURL})`;
+    body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`;
 }
 
 function getCity()
