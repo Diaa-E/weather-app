@@ -47,11 +47,11 @@ body, :root{
     backdrop-filter: blur(5px) saturate(50%);
     background-color: var(--background-wrapper);
     display: grid;
-    grid-auto-rows: min-content;
+    grid-auto-rows: auto;
     box-shadow: var(--shadow);
     place-items: stretch;
     place-content: stretch;
-    padding: 30px;
+    padding: 30px 30px 10px 30px ;
     gap: 30px;
 }
 
