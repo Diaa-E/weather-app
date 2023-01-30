@@ -14,6 +14,7 @@ async function getWeather(city)
         errorPanel().clearError();
         const cityCoord = await getCoord(city);
         const cityData = await getCityData(cityCoord[0].lat, cityCoord[0].lon);
+        console.log(cityData)
         let img = await getImage(cityCoord[0].name); //Returns an empty hits array if query has no results
         //look for a weather related image in case no results come back from prompt
         if (img.hits.length === 0)
@@ -23,6 +24,7 @@ async function getWeather(city)
     
         updateCity(cityCoord[0].name, cityCoord[0].country); //more accurate city name
         updateDate(cityData.dt);
+        updateWeather(cityData);
         const body = document.querySelector("body");
         body.style.backgroundImage = `url(${img.hits[getRandom(img.hits.length)].largeImageURL})`;
     }
@@ -134,7 +136,7 @@ async function getImage(query)
 
 function getMode()
 {
-    return document.querySelector("select#mode").value;
+    return document.querySelector("select#mode").value.toLowerCase();
 }
 
 function errorPanel()
@@ -152,4 +154,21 @@ function errorPanel()
     }
 
     return {showError, clearError}
+}
+
+function updateWeather(data)
+{
+    const pInfoFields = document.querySelectorAll(".weather-info");
+    const isMetric = getMode() === "metric" ? true : false;
+    const units = {
+        temp: isMetric ? "° C" : "° F",
+        wind: isMetric ? "m/sec" : "Mph",
+        clouds: "%",
+        humidity: "%" 
+    }
+
+    pInfoFields[0].textContent = `${data.clouds.all} ${units.clouds}`;
+    pInfoFields[1].textContent = `${data.main.temp} ${units.temp}`;
+    pInfoFields[2].textContent = `${data.wind.speed} ${units.wind}`;
+    pInfoFields[3].textContent = `${data.main.humidity} ${units.humidity}`;
 }
